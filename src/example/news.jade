@@ -11,18 +11,18 @@ block scripts
       }
     }
 
-mixin news(n)
+mixin news($n)
   article
     header
-      h1!= n[1]
-      time(datetime=n[0]) Added: !{strftime('%e %B, %Y',strtotime($n[0]))}
-    p!= n[2]
+      h1!= $n[1]
+      time(datetime=$n[0]) Added: !{strftime('%e %B, %Y',strtotime($n[0]))}
+    p!= $n[2]
 
 
 block prepend content
   if news
-    each n in news
-      +news(n)
+    each $n in $news
+      +news($n)
       script
         has_news();
   else

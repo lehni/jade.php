@@ -184,10 +184,6 @@ class Compiler {
         $separators = $_separators;
 
         if (count($separators) == 0) {
-            if (strchr('0123456789-+("\'$', $input[0]) === FALSE) {
-                $input = '$' . $input;
-            }
-
             return array($input);
         }
 
@@ -198,11 +194,7 @@ class Compiler {
             throw new \Exception('Expecting a variable name got: ' . $input);
         }
 
-        // do not add $ if it is not like a variable
         $varname = substr($input,0,$separators[0][1]);
-        if ($separators[0][0] != '(' && strchr('0123456789-+("\'$', $varname[0]) === FALSE) {
-            $varname = '$' . $varname;
-        }
 
         $get_middle_string = function($start, $end) use ($input) {
             $offset = $start[1] + strlen($start[0]);
@@ -645,7 +637,7 @@ class Compiler {
             }
 
             //TODO: assign nulls to all varargs for remove php warnings
-            array_unshift($arguments, 'attributes');
+            array_unshift($arguments, '$attributes');
             $code = $this->createCode("function {$name} (%s) {", implode(',',$arguments));
 
             $this->buffer($code);

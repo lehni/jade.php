@@ -8,12 +8,12 @@ block body
         div.center(style='color:darkblue'): b Login page
         br
         label Username:
-          input(name='user', value=_REQUEST.user, required, autofocus)
+          input(name='user', value=$_REQUEST.user, required, autofocus)
         br
         label Password:
           input(name='pass', type='password', required)
         br
-        if _POST.user
+        if $_POST.user
           span.bad Bad username or password!
         br
         input.btn(type='submit', value='Login')
