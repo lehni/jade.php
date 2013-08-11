@@ -5,12 +5,12 @@
     public function __construct($n = '') {
       $this->text = "test$n\n";
     }
-    public function suffix($n) {
+    static public function suffix($n) {
       return new Req($n);
     }
   }
   class Test {
-    public function app() {
+    static public function app() {
       return new Req();
     }
   }

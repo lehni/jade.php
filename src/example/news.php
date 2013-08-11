@@ -1,8 +1,8 @@
 <?php
-// [q] 2012, sisoftrg@gmail.com
+// [q] 2012-2013, sisoftrg@gmail.com
 
 $news = array(
-    array(1352629683, 'First news', 'This example work well.'),
-    array(1352629684, 'Second news', 'Jade powered.'),
+    array('added'=>'2000-01-01', 'subj'=>'First news', 'text'=>'This example work well.'),
+    array('added'=>'2000-01-02', 'subj'=>'Second news', 'text'=>'Jade powered.'),
 );
 

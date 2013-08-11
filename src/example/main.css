@@ -1,4 +1,4 @@
-/* [q] 2012, sisoftrg@gmail.com */
+/* [q] 2012-2013, sisoftrg@gmail.com */
 
 html {
     min-height: 100%;
@@ -67,6 +67,12 @@ time {
     left: -60%;
     padding-top: 1px;
     border: 1px solid black;
-    background: yellow;
+    background: #3cf;
     text-align: right;
+}
+
+#logout {
+    float: right;
+    padding-right: 1em;
+    font-weight: bold;
 }

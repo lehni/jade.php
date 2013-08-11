@@ -1,5 +1,5 @@
 <?php
-// [q] 2012, sisoftrg@gmail.com
+// [q] 2012-2013, sisoftrg@gmail.com
 
 $jade = null;
 
@@ -9,11 +9,11 @@ function init() {
     spl_autoload_register(function($class) {
         if(!strstr($class, 'Jade'))
             return;
-        include_once("../" . str_replace("\\", DIRECTORY_SEPARATOR, $class) . '.php');
+        include_once(".." . DIRECTORY_SEPARATOR . str_replace("\\", DIRECTORY_SEPARATOR, $class) . '.php');
     });
 }
 
-// return cache file name if $file=true or rendered content
+// return cache file name if $file=true else rendered content
 function jade($fn, $file = false, $deps = array()) {
     global $jade;
     $time = @filectime($fn);
@@ -31,7 +31,7 @@ function jade($fn, $file = false, $deps = array()) {
         $jade = new Jade\Jade(true);
 
     if($file) {
-        $cn = "cache/$fn.php";
+        $cn = "cache" . DIRECTORY_SEPARATOR . "$fn.php";
         $to = @filectime($pn);
         if($to === FALSE || $to < $time)
             file_put_contents($cn, $jade->render($fn));
@@ -43,6 +43,11 @@ function jade($fn, $file = false, $deps = array()) {
 // check for logged-in user or show login dialog
 function login() {
     @session_start();
+    if(isset($_REQUEST['logout'])) {
+        @session_destroy();
+        header('Location: .');
+        die;
+    }
     if(isset($_SESSION['ok']) && $_SESSION['ok']) {
         return true;
     } else {
@@ -70,7 +75,7 @@ login();
 // index page = news page for this sample
 $page = "news";
 
-if($page)
-    require($page . ".php");
+if($page && is_file("{$page}.php"))
+    require("{$page}.php");
 require(jade($page ? "{$page}.jade" : "main.jade", true, array('main.jade')));
 

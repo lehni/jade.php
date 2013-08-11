@@ -5,13 +5,15 @@ html(lang='en')
       title Test application
       link(href='main.css', rel='stylesheet')
 
-  //[q] 2012, sisoftrg@gmail.com
+  //[q] 2012-2013, sisoftrg@gmail.com
   body
     block scripts
     block body
       header
         nav
           div.menu Put menu here
+            div#logout
+              a(href='?logout') Logout
         br
 
       block content
